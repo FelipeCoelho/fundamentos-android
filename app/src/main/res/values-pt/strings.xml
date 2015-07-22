@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meu Aplicativo</string>
+    <string name="hello_world">Ola Mundo!</string>
+    <string name="action_settings">Opções</string>
+    <string name="login">Entrar</string>
+    <string name="user_name">Usuário</string>
+    <string name="password">Senha</string>
+    <string name="app_login">Entrar</string>
+    <string name="persisty_client">Persistencia de Cliente</string>
+    <string name="age">Idade</string>
+    <string name="phone">Fone</string>
+    <string name="adddress">Endereço</string>
+    <string name="name">Nome</string>
+    <string name="save">Salvar</string>
+</resources>
