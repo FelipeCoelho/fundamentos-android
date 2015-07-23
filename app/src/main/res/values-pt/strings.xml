@@ -13,4 +13,8 @@
     <string name="adddress">Endereço</string>
     <string name="name">Nome</string>
     <string name="save">Salvar</string>
+    <string name="campo_obrigatorio">Campo obrigatório!</string>
+    <string name="edit">editar</string>
+    <string name="delete">deletar</string>
+    <string name="sucess">sucesso</string>
 </resources>

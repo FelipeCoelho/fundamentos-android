@@ -1,17 +1,31 @@
 package com.example.administrador.myapplication.model.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.administrador.myapplication.model.persistence.MemoryClientRepoditory;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrador on 20/07/2015.
  */
-public class Client {
+public class Client implements Parcelable {
+
     private Integer age;
     private String name;
     private Integer fone;
     private String addDress;
+
+    public Client() {
+        super();
+    }
+
+    public Client(Parcel parcel) {
+        super();
+        readToParcer(parcel);
+    }
 
     public Integer getAge() {
         return age;
@@ -71,7 +85,8 @@ public class Client {
     public void save() {
         MemoryClientRepoditory.getInstance().save(this);
     }
-    public static List<Client> getAll(){
+
+    public static List<Client> getAll() {
         return MemoryClientRepoditory.getInstance().getAll();
     }
 
@@ -79,4 +94,42 @@ public class Client {
     public String toString() {
         return this.getName();
     }
+
+    public void delete() {
+        MemoryClientRepoditory.getInstance().delete(this);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name == null ? "" : name);
+        dest.writeString(addDress == null ? "" : addDress);
+        dest.writeInt(fone == null ? -1 : fone);
+        dest.writeInt(age == null ? -1 : age);
+    }
+
+    private void readToParcer(Parcel parcel) {
+        name = parcel.readString();
+        addDress = parcel.readString();
+        int partialFone = parcel.readInt();
+        fone = partialFone == -1 ? null : partialFone;
+        int partialAge = parcel.readInt();
+        age = partialAge == -1 ? null : partialAge;
+    }
+
+    public static final Parcelable.Creator<Client> CREATOR = new Parcelable.Creator<Client>() {
+
+        @Override
+        public Client createFromParcel(Parcel source) {
+            return new Client(source);
+        }
+
+        public Client[] newArray(int size) {
+            return new Client[size];
+        }
+    };
 }

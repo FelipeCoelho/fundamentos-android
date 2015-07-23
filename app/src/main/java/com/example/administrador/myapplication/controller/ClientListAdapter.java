@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * Created by Administrador on 20/07/2015.
  */
-public class ClientListAdapter  extends BaseAdapter{
+public class ClientListAdapter extends BaseAdapter {
 
     private List<Client> clientList;
 
     private Activity context;
 
-    public ClientListAdapter(Activity context, List<Client> clientList){
+    public ClientListAdapter(Activity context, List<Client> clientList) {
         this.clientList = clientList;
         this.context = context;
     }
@@ -45,11 +45,15 @@ public class ClientListAdapter  extends BaseAdapter{
         View view = context.getLayoutInflater().inflate(R.layout.client_list_item, parent, false);
 
         Client client = getItem(position);
-        TextView textViewName = (TextView)view.findViewById(R.id.textViewName);
+        TextView textViewName = (TextView) view.findViewById(R.id.textViewName);
         textViewName.setText(client.getName());
         TextView textViewAge = (TextView) view.findViewById(R.id.textViewAge);
         textViewAge.setText(client.getAge().toString());
 
         return view;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clientList = clients;
     }
 }

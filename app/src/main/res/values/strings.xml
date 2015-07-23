@@ -14,5 +14,9 @@
     <string name="name">name</string>
     <string name="save">Salvar</string>
     <string name="addCliente">add_cliente</string>
+    <string name="campo_obrigatorio">Field required!</string>
+    <string name="edit">edite</string>
+    <string name="delete">delete</string>
+    <string name="sucess">sucess</string>
 
 </resources>
