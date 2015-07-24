@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.administrador.myapplication.model.persistence.MemoryClientRepoditory;
+import com.example.administrador.myapplication.model.persistence.SQLiteClientRepository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public class Client implements Parcelable {
 
+    private Integer id;
     private Integer age;
     private String name;
     private Integer fone;
@@ -59,35 +61,20 @@ public class Client implements Parcelable {
         this.addDress = addDress;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Client client = (Client) o;
-
-        if (age != null ? !age.equals(client.age) : client.age != null) return false;
-        if (name != null ? !name.equals(client.name) : client.name != null) return false;
-        if (fone != null ? !fone.equals(client.fone) : client.fone != null) return false;
-        return !(addDress != null ? !addDress.equals(client.addDress) : client.addDress != null);
-
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        int result = age != null ? age.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (fone != null ? fone.hashCode() : 0);
-        result = 31 * result + (addDress != null ? addDress.hashCode() : 0);
-        return result;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void save() {
-        MemoryClientRepoditory.getInstance().save(this);
+        SQLiteClientRepository.getInstance().save(this);
     }
 
     public static List<Client> getAll() {
-        return MemoryClientRepoditory.getInstance().getAll();
+        return SQLiteClientRepository.getInstance().getAll();
     }
 
     @Override
@@ -96,7 +83,7 @@ public class Client implements Parcelable {
     }
 
     public void delete() {
-        MemoryClientRepoditory.getInstance().delete(this);
+        SQLiteClientRepository.getInstance().delete(this);
     }
 
     @Override
@@ -106,6 +93,7 @@ public class Client implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
         dest.writeString(addDress == null ? "" : addDress);
         dest.writeInt(fone == null ? -1 : fone);
@@ -113,6 +101,8 @@ public class Client implements Parcelable {
     }
 
     private void readToParcer(Parcel parcel) {
+        int partialId = parcel.readInt();
+        id = partialId == -1 ? null : partialId;
         name = parcel.readString();
         addDress = parcel.readString();
         int partialFone = parcel.readInt();
@@ -132,4 +122,29 @@ public class Client implements Parcelable {
             return new Client[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if (id != null ? !id.equals(client.id) : client.id != null) return false;
+        if (age != null ? !age.equals(client.age) : client.age != null) return false;
+        if (name != null ? !name.equals(client.name) : client.name != null) return false;
+        if (fone != null ? !fone.equals(client.fone) : client.fone != null) return false;
+        return !(addDress != null ? !addDress.equals(client.addDress) : client.addDress != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (fone != null ? fone.hashCode() : 0);
+        result = 31 * result + (addDress != null ? addDress.hashCode() : 0);
+        return result;
+    }
 }

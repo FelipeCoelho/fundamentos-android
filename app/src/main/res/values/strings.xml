@@ -18,5 +18,9 @@
     <string name="edit">edite</string>
     <string name="delete">delete</string>
     <string name="sucess">sucess</string>
+    <string name="confirm_progress">confirm delete</string>
+    <string name="confirm">confirma</string>
+    <string name="yes">yes</string>
+    <string name="not">not</string>
 
 </resources>
