@@ -22,5 +22,7 @@
     <string name="confirm">confirma</string>
     <string name="yes">yes</string>
     <string name="not">not</string>
+    <string name="cep">cep</string>
+    <string name="find">find</string>
 
 </resources>

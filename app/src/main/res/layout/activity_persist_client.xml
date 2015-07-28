@@ -31,4 +31,16 @@
         android:layout_height="wrap_content"
         android:hint="@string/adddress" />
 
+    <EditText
+        android:id="@+id/textViewCep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cep" />
+
+    <Button
+        android:id="@+id/buttonFind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/find"/>
+
 </LinearLayout>
