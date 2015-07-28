@@ -1,5 +1,6 @@
 package com.example.administrador.myapplication.controller;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrador.myapplication.R;
@@ -26,8 +28,16 @@ public class ClientPersistActivity extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextAge;
     private EditText editTextFone;
-    private EditText editTextAddDress;
     private EditText editTextCep;
+
+    private EditText editTextTipoDeLogradouro;
+    private EditText editTextLogradouro;
+    private EditText editTextBairro;
+    private EditText editTextCidade;
+    private EditText editTextEstado;
+
+    private ProgressDialog progressDialog;
+
     private Button buttonFind;
 
     @Override
@@ -61,7 +71,7 @@ public class ClientPersistActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menuSave) {
-            if (FormHelper.riquiredValidate(ClientPersistActivity.this, editTextName, editTextAge, editTextFone, editTextAddDress)) {
+            if (FormHelper.riquiredValidate(ClientPersistActivity.this, editTextName, editTextAge, editTextFone)) {
                 Client client = bindClient();
                 client.save();
                 Toast.makeText(ClientPersistActivity.this, Client.getAll().toString(), Toast.LENGTH_LONG).show();
@@ -78,7 +88,7 @@ public class ClientPersistActivity extends AppCompatActivity {
         client.setName(editTextName.getText().toString());
         client.setAge(Integer.valueOf(editTextAge.getText().toString()));
         client.setFone(Integer.valueOf(editTextFone.getText().toString()));
-        client.setAddDress(editTextAddDress.getText().toString());
+        //client.setAddDress(editTextAddDress.getText().toString());
         return client;
     }
 
@@ -86,8 +96,13 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextName = (EditText) findViewById(R.id.textViewName);
         editTextAge = (EditText) findViewById(R.id.textViewAge);
         editTextFone = (EditText) findViewById(R.id.textViewFone);
-        editTextAddDress = (EditText) findViewById(R.id.textViewAddDress);
         editTextCep = (EditText) findViewById(R.id.textViewCep);
+
+        editTextTipoDeLogradouro = (EditText) findViewById(R.id.TextViewTipoDeLogradouro);
+        editTextLogradouro = (EditText) findViewById(R.id.TextViewLogradouro);
+        editTextBairro = (EditText) findViewById(R.id.TextViewBairro);
+        editTextCidade = (EditText) findViewById(R.id.TextViewCidade);
+        editTextEstado = (EditText) findViewById(R.id.TextViewEstado);
         bindButtonFindCep();
     }
 
@@ -106,7 +121,14 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextName.setText(client.getName());
         editTextAge.setText(client.getAge().toString());
         editTextFone.setText(client.getFone().toString());
-        editTextAddDress.setText(client.getAddDress());
+
+        editTextTipoDeLogradouro.setText(client.getAddDress().getTipoDeLogradouro());
+        editTextLogradouro.setText(client.getAddDress().getLogradouro());
+        editTextBairro.setText(client.getAddDress().getBairro());
+        editTextCidade.setText(client.getAddDress().getCidade());
+        editTextEstado.setText(client.getAddDress().getEstado());
+
+        //editTextAddDress.setText(client.getAddDress());
     }
 
     private class GetAddressByCep extends AsyncTask<String, Void, ClientAddres> {
@@ -115,7 +137,9 @@ public class ClientPersistActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            progressDialog = new ProgressDialog(ClientPersistActivity.this);
+            progressDialog.setMessage(getString(R.string.aguardando));
+            progressDialog.show();
         }
 
         @Override
@@ -124,8 +148,15 @@ public class ClientPersistActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(ClientAddres aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(ClientAddres adress) {
+            super.onPostExecute(adress);
+            client.setAddDress(adress);
+            editTextTipoDeLogradouro.setText(client.getAddDress().getTipoDeLogradouro());
+            editTextLogradouro.setText(client.getAddDress().getLogradouro());
+            editTextBairro.setText(client.getAddDress().getBairro());
+            editTextCidade.setText(client.getAddDress().getCidade());
+            editTextEstado.setText(client.getAddDress().getEstado());
+            progressDialog.dismiss();
         }
     }
 

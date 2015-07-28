@@ -19,7 +19,8 @@ public class ClientContract {
     public static final String FONE = "FONE";
     public static final String ADDRESS = "ADDRESS";
     public static final String AGE = "AGE";
-    public static final String[] COLUMNS = {ID, NAME, FONE, ADDRESS, AGE};
+    //public static final String[] COLUMNS = {ID, NAME, FONE, ADDRESS, AGE};
+    public static final String[] COLUMNS = {ID, NAME, FONE, AGE};
 
 
     public static String getCreateTable() {
@@ -31,8 +32,8 @@ public class ClientContract {
         sql.append(ID + " INTEGER PRIMARY KEY, ");
         sql.append(NAME + " TEXT, ");
         sql.append(AGE + " INTEGER, ");
-        sql.append(FONE + " INTEGER, ");
-        sql.append(ADDRESS + " TEXT ");
+        sql.append(FONE + " INTEGER ");
+        //sql.append(ADDRESS + " TEXT ");
         sql.append(" );");
 
         return sql.toString();
@@ -44,7 +45,7 @@ public class ClientContract {
         values.put(ClientContract.NAME, client.getName());
         values.put(ClientContract.AGE, client.getAge());
         values.put(ClientContract.FONE, client.getFone());
-        values.put(ClientContract.ADDRESS, client.getAddDress());
+        //values.put(ClientContract.ADDRESS, client.getAddDress());
         return values;
     }
 
@@ -55,7 +56,7 @@ public class ClientContract {
             client.setName(cursor.getString(cursor.getColumnIndex(ClientContract.NAME)));
             client.setAge(cursor.getInt(cursor.getColumnIndex(ClientContract.AGE)));
             client.setFone(cursor.getInt(cursor.getColumnIndex(ClientContract.FONE)));
-            client.setAddDress(cursor.getString(cursor.getColumnIndex(ClientContract.ADDRESS)));
+            //client.setAddDress(cursor.getString(cursor.getColumnIndex(ClientContract.ADDRESS)));
             return client;
         }
         return null;

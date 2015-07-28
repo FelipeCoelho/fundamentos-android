@@ -1,6 +1,9 @@
 package com.example.administrador.myapplication.model.entities;
 
-public class ClientAddres {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ClientAddres implements Parcelable {
 
     private String cep;
     private String tipoDeLogradouro;
@@ -9,6 +12,14 @@ public class ClientAddres {
     private String cidade;
     private String estado;
 
+    public ClientAddres() {
+        super();
+    }
+
+    public ClientAddres(Parcel parcel) {
+        super();
+        readToParcer(parcel);
+    }
 
     public String getCep() {
         return cep;
@@ -56,5 +67,29 @@ public class ClientAddres {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(cep == null ? "" : cep);
+        dest.writeString(tipoDeLogradouro == null ? "" : tipoDeLogradouro);
+        dest.writeString(logradouro == null ? "" : logradouro);
+        dest.writeString(bairro == null ? "" : bairro);
+        dest.writeString(cidade == null ? "" : cidade);
+        dest.writeString(estado == null ? "" : estado);
+    }
+
+    private void readToParcer(Parcel parcel) {
+        cep = parcel.readString();
+        tipoDeLogradouro = parcel.readString();
+        logradouro = parcel.readString();
+        bairro = parcel.readString();
+        cidade = parcel.readString();
+        estado = parcel.readString();
     }
 }

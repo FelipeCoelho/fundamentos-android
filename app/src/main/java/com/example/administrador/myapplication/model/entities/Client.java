@@ -18,7 +18,8 @@ public class Client implements Parcelable {
     private Integer age;
     private String name;
     private Integer fone;
-    private String addDress;
+    private ClientAddres addDress;
+
 
     public Client() {
         super();
@@ -49,15 +50,19 @@ public class Client implements Parcelable {
         return fone;
     }
 
-    public String getAddDress() {
-        return addDress;
-    }
 
     public void setFone(Integer fone) {
         this.fone = fone;
     }
 
-    public void setAddDress(String addDress) {
+    public ClientAddres getAddDress() {
+        if (addDress == null) {
+            addDress = new ClientAddres();
+        }
+        return addDress;
+    }
+
+    public void setAddDress(ClientAddres addDress) {
         this.addDress = addDress;
     }
 
@@ -95,7 +100,7 @@ public class Client implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
-        dest.writeString(addDress == null ? "" : addDress);
+        //dest.writeString(addDress == null ? "" : addDress);
         dest.writeInt(fone == null ? -1 : fone);
         dest.writeInt(age == null ? -1 : age);
     }
@@ -104,7 +109,7 @@ public class Client implements Parcelable {
         int partialId = parcel.readInt();
         id = partialId == -1 ? null : partialId;
         name = parcel.readString();
-        addDress = parcel.readString();
+        //addDress = parcel.readString();
         int partialFone = parcel.readInt();
         fone = partialFone == -1 ? null : partialFone;
         int partialAge = parcel.readInt();
