@@ -85,6 +85,7 @@ public class ClientPersistActivity extends AppCompatActivity {
                 ClientPersistActivity.this.finish();
             }
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -123,7 +124,25 @@ public class ClientPersistActivity extends AppCompatActivity {
 
         editTextAge = (EditText) findViewById(R.id.textViewAge);
         editTextFone = (EditText) findViewById(R.id.textViewFone);
+
         editTextCep = (EditText) findViewById(R.id.textViewCep);
+        editTextCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_edittext_client, 0);
+        editTextCep.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (editTextCep.getRight() - editTextCep.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        new GetAddressByCep().execute(editTextCep.getText().toString());
+                    }
+                }
+                return false;
+            }
+        });
 
         editTextTipoDeLogradouro = (EditText) findViewById(R.id.TextViewTipoDeLogradouro);
         editTextLogradouro = (EditText) findViewById(R.id.TextViewLogradouro);

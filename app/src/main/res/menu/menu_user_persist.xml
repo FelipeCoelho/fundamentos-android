@@ -5,16 +5,11 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/menuAdd"
-        android:icon="@drawable/ic_add"
-        android:orderInCategory="100"
-        android:title="@string/addCliente"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/menuUser"
+        android:id="@+id/menuSaveUser"
         android:icon="@drawable/ic_save"
         android:orderInCategory="100"
-        android:title="@string/user"
+        android:title="@string/save"
         app:showAsAction="always" />
+
+
 </menu>

@@ -114,6 +114,10 @@ public class ClientListActivit extends AppCompatActivity {
             }
             return true;
         }
+        if (item.getItemId() == R.id.menuUser) {
+            Intent goToMainActivity = new Intent(ClientListActivit.this, UserPersistActivity.class);
+            startActivity(goToMainActivity);
+        }
         return super.onOptionsItemSelected(item);
     }
 

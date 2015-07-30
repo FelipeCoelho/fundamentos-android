@@ -12,8 +12,8 @@
     <string name="phone">phone</string>
     <string name="adddress">addDress</string>
     <string name="name">name</string>
-    <string name="save">Salvar</string>
-    <string name="addCliente">add_cliente</string>
+    <string name="save">Save</string>
+    <string name="addCliente">add Cliente</string>
     <string name="campo_obrigatorio">Field required!</string>
     <string name="edit">edite</string>
     <string name="delete">delete</string>
@@ -27,9 +27,10 @@
     <string name="tipoDeLogradouro">tipo_De_Logradouro</string>
     <string name="logradouro">logradouro</string>
     <string name="bairro">bairro</string>
-    <string name="cidade">cidade</string>
-    <string name="estado">estado</string>
+    <string name="cidade">neighborhood</string>
+    <string name="estado">state</string>
     <string name="tipoLogradouro">tipo_logradouro</string>
     <string name="aguardando">Aguardando</string>
+    <string name="user">user</string>
 
 </resources>

@@ -28,5 +28,14 @@
         <activity
             android:name=".controller.ClientPersistActivity"
             android:label="@string/persisty_client"></activity>
+
+
+        <activity
+            android:name=".controller.UserPersistActivity"
+            android:label="@string/persisty_client"></activity>
+
+        <activity
+            android:name=".controller.UserListActivity"
+            android:label="@string/persisty_client"></activity>
     </application>
 </manifest>
