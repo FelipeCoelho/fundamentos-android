@@ -126,7 +126,7 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextFone = (EditText) findViewById(R.id.textViewFone);
 
         editTextCep = (EditText) findViewById(R.id.textViewCep);
-        editTextCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_edittext_client, 0);
+        editTextCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cep, 0);
         editTextCep.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
